@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+/* Class-based dark mode: toggled by adding `.dark` on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens — semantic colors resolved per theme via CSS variables. */
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #f9fafb;
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --primary: #2563eb;
+  --primary-fg: #ffffff;
+  --accent: #0ea5e9;
+  --positive: #16a34a;
+  --negative: #dc2626;
+  --warning: #d97706;
+}
+
+.dark {
+  --bg: #0b1120;
+  --surface: #111827;
+  --surface-2: #0f172a;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --primary: #3b82f6;
+  --primary-fg: #ffffff;
+  --accent: #38bdf8;
+  --positive: #22c55e;
+  --negative: #ef4444;
+  --warning: #f59e0b;
+}
+
+/* Expose tokens to Tailwind utilities (bg-surface, text-muted, etc.). */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-warning: var(--warning);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

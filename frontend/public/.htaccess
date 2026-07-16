@@ -1,0 +1,24 @@
+# SPA routing for the Import Cost Management app on HostGator (Apache).
+# Sends any request that is not a real file/directory to index.html so
+# React Router can handle client-side routes on refresh / deep links.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve existing files/directories as-is.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else -> index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Basic caching for hashed static assets.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
