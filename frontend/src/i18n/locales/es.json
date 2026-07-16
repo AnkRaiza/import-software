@@ -160,6 +160,29 @@
       "miscellaneous": "Varios"
     }
   },
+  "customs": {
+    "inputsTitle": "Datos Tributarios",
+    "breakdownTitle": "Desglose Aduanero",
+    "cifNote": "CIF = FOB + flete marítimo + seguro",
+    "penEquiv": "≈ S/ {{value}}",
+    "in": {
+      "exchangeRate": "Tipo de Cambio (S/ por $)",
+      "adValorem": "Ad Valorem %",
+      "igv": "IGV %",
+      "ipm": "IPM %",
+      "perception": "Percepción %"
+    },
+    "out": {
+      "fob": "FOB",
+      "cif": "CIF",
+      "taxBase": "Base Imponible",
+      "adValorem": "Ad Valorem",
+      "igv": "IGV",
+      "ipm": "IPM",
+      "perception": "Percepción",
+      "total": "Total Tributos SUNAT"
+    }
+  },
   "modules": {
     "products": {
       "title": "Catálogo de Productos",

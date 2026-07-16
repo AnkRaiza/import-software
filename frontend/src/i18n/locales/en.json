@@ -160,6 +160,29 @@
       "miscellaneous": "Miscellaneous"
     }
   },
+  "customs": {
+    "inputsTitle": "Tax Inputs",
+    "breakdownTitle": "Customs Breakdown",
+    "cifNote": "CIF = FOB + ocean freight + insurance",
+    "penEquiv": "≈ S/ {{value}}",
+    "in": {
+      "exchangeRate": "Exchange Rate (S/ per $)",
+      "adValorem": "Ad Valorem %",
+      "igv": "IGV %",
+      "ipm": "IPM %",
+      "perception": "Perception %"
+    },
+    "out": {
+      "fob": "FOB",
+      "cif": "CIF",
+      "taxBase": "Tax Base",
+      "adValorem": "Ad Valorem",
+      "igv": "IGV",
+      "ipm": "IPM",
+      "perception": "Perception",
+      "total": "Total SUNAT Taxes"
+    }
+  },
   "modules": {
     "products": {
       "title": "Product Catalog",
