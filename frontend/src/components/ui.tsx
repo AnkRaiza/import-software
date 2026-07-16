@@ -1,6 +1,7 @@
 // Shared presentational primitives used across modules.
 
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 
 export function PageHeader({
@@ -47,10 +48,11 @@ export function ComingSoon({
 }: {
   features: string[]
 }) {
+  const { t } = useTranslation()
   return (
     <Card>
       <div className="mb-3 inline-flex items-center rounded-full bg-surface-2 px-2.5 py-1 text-xs font-medium text-muted">
-        Planned for the MVP
+        {t('comingSoon.badge')}
       </div>
       <ul className="space-y-2 text-sm">
         {features.map((f) => (

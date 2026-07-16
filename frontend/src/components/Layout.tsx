@@ -2,13 +2,16 @@
 
 import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Menu, Moon, Package, Sun, X } from 'lucide-react'
 import clsx from 'clsx'
 import { NAV_ITEMS } from './nav'
 import { useTheme } from '../lib/theme'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 export default function Layout() {
   const { theme, toggle } = useTheme()
+  const { t } = useTranslation()
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
@@ -24,13 +27,13 @@ export default function Layout() {
         <div className="flex h-16 items-center gap-2 border-b border-border px-5">
           <Package className="size-6 text-primary" />
           <div className="leading-tight">
-            <div className="text-sm font-semibold">Import Cost</div>
-            <div className="text-xs text-muted">Management System</div>
+            <div className="text-sm font-semibold">{t('app.name')}</div>
+            <div className="text-xs text-muted">{t('app.system')}</div>
           </div>
         </div>
 
         <nav className="flex-1 overflow-y-auto p-3">
-          {NAV_ITEMS.map(({ path, label, icon: Icon }) => (
+          {NAV_ITEMS.map(({ path, labelKey, icon: Icon }) => (
             <NavLink
               key={path}
               to={path}
@@ -46,13 +49,13 @@ export default function Layout() {
               }
             >
               <Icon className="size-4.5 shrink-0" />
-              {label}
+              {t(labelKey)}
             </NavLink>
           ))}
         </nav>
 
         <div className="border-t border-border p-4 text-xs text-muted">
-          MVP · Local data
+          {t('app.mvpNote')}
         </div>
       </aside>
 
@@ -71,21 +74,28 @@ export default function Layout() {
             type="button"
             className="rounded-lg p-2 text-muted hover:bg-surface-2 lg:hidden"
             onClick={() => setMobileOpen((o) => !o)}
-            aria-label="Toggle navigation"
+            aria-label={t('common.toggleNav')}
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
           <div className="hidden text-sm text-muted lg:block">
-            Landed cost calculator · Peru imports
+            {t('app.tagline')}
           </div>
-          <button
-            type="button"
-            onClick={toggle}
-            className="rounded-lg p-2 text-muted hover:bg-surface-2"
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? <Sun className="size-5" /> : <Moon className="size-5" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              type="button"
+              onClick={toggle}
+              className="rounded-lg p-2 text-muted hover:bg-surface-2"
+              aria-label={t('common.toggleTheme')}
+            >
+              {theme === 'dark' ? (
+                <Sun className="size-5" />
+              ) : (
+                <Moon className="size-5" />
+              )}
+            </button>
+          </div>
         </header>
 
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">

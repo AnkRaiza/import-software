@@ -1,0 +1,159 @@
+{
+  "app": {
+    "name": "Import Cost",
+    "system": "Sistema de Gestión",
+    "tagline": "Calculadora de costo nacionalizado · Importaciones Perú",
+    "mvpNote": "MVP · Datos locales"
+  },
+  "common": {
+    "add": "Agregar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "saveChanges": "Guardar Cambios",
+    "none": "—",
+    "language": "Idioma",
+    "toggleNav": "Alternar navegación",
+    "toggleTheme": "Cambiar tema",
+    "close": "Cerrar"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "products": "Catálogo de Productos",
+    "suppliers": "Proveedores",
+    "purchaseOrder": "Orden de Compra",
+    "logistics": "Logística",
+    "customs": "Aduanas (SUNAT)",
+    "allocation": "Prorrateo de Costos",
+    "pricing": "Precios",
+    "history": "Historial de Importaciones",
+    "simulator": "Simulador de Escenarios"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "subtitle": "Resumen ejecutivo de sus importaciones",
+    "emptyTitle": "Aún no hay importaciones",
+    "emptyDesc": "Cree su primera importación para ver los indicadores de costo nacionalizado, desgloses de costos e historial aquí.",
+    "aggregated_one": "Consolidado de {{count}} importación",
+    "aggregated_other": "Consolidado de {{count}} importaciones",
+    "unitsHint": "{{value}} unidades",
+    "areaHint": "{{value}} m²",
+    "kpi": {
+      "totalFob": "FOB Total",
+      "logistics": "Costo Logístico",
+      "taxes": "Tributos Aduaneros",
+      "landed": "Costo Nacionalizado Total",
+      "avgUnit": "Costo Prom. / Unidad",
+      "avgM2": "Costo Prom. / m²",
+      "selling": "Precio de Venta Sugerido",
+      "margin": "Margen Bruto"
+    }
+  },
+  "comingSoon": {
+    "badge": "Planeado para el MVP"
+  },
+  "suppliers": {
+    "title": "Proveedores",
+    "subtitle": "Gestione empresas proveedoras y condiciones comerciales",
+    "add": "Agregar Proveedor",
+    "edit": "Editar Proveedor",
+    "emptyTitle": "Aún no hay proveedores",
+    "emptyDesc": "Agregue su primer proveedor para empezar a crear órdenes de compra.",
+    "col": {
+      "company": "Empresa",
+      "contact": "Contacto",
+      "country": "País",
+      "currency": "Moneda",
+      "incoterms": "Incoterms",
+      "paymentTerms": "Condiciones de Pago"
+    },
+    "form": {
+      "notes": "Notas",
+      "companyRequired": "La empresa es obligatoria"
+    },
+    "deleteTitle": "Eliminar proveedor",
+    "deleteMessage": "¿Eliminar \"{{name}}\"? Esta acción no se puede deshacer."
+  },
+  "modules": {
+    "products": {
+      "title": "Catálogo de Productos",
+      "subtitle": "Catálogo reutilizable de productos importables (SKU, dimensiones, precio FOB)",
+      "features": [
+        "Agregar/editar productos: SKU, nombre, categoría, espesor, acabado (UV 1/2 caras)",
+        "Dimensiones con área (m²) calculada automáticamente, peso, precio FOB unitario",
+        "Vincular productos con proveedores",
+        "Productos ilimitados con búsqueda y filtrado"
+      ]
+    },
+    "purchaseOrder": {
+      "title": "Orden de Compra",
+      "subtitle": "Cree una orden a partir del catálogo — el FOB siempre se calcula",
+      "features": [
+        "Seleccionar proveedor y productos, ingresar cantidades",
+        "Obtener automáticamente precio unitario, área y peso del catálogo",
+        "Calcular automáticamente totales de línea, cantidad/peso/área total y FOB total",
+        "El FOB nunca se ingresa manualmente (regla del PRD)"
+      ]
+    },
+    "logistics": {
+      "title": "Logística",
+      "subtitle": "Costos internacionales, de destino y de agente de aduana",
+      "features": [
+        "Internacional: flete marítimo, seguro, servicio de BL, otros",
+        "Destino: desconsolidación, almacén, manipuleo, levante aduanero, monitoreo, gastos portuarios",
+        "Agente de aduana: comisión, tramitación, entrega local, varios",
+        "Subtotales y costo logístico total calculados automáticamente"
+      ]
+    },
+    "customs": {
+      "title": "Aduanas (SUNAT)",
+      "subtitle": "Derechos e impuestos aduaneros del Perú",
+      "features": [
+        "Datos: tipo de cambio, Ad Valorem %, IGV %, IPM %, Percepción %",
+        "CIF y base imponible calculados automáticamente",
+        "Montos de Ad Valorem, IGV, IPM y Percepción",
+        "Total de tributos SUNAT"
+      ]
+    },
+    "allocation": {
+      "title": "Prorrateo de Costos",
+      "subtitle": "Distribuir logística e impuestos entre los productos",
+      "features": [
+        "Métodos de prorrateo: por cantidad, peso, área (m²) o valor FOB",
+        "Prorrateo proporcional de logística e impuestos por producto",
+        "Tabla final: FOB, logística, impuestos, costo nacionalizado, costo/unidad, costo/m²",
+        "Recalculado al instante por el motor de cálculo compartido"
+      ]
+    },
+    "pricing": {
+      "title": "Precios",
+      "subtitle": "Precios de venta y márgenes a partir del costo nacionalizado",
+      "features": [
+        "Niveles de margen: 20%, 25%, 30%, 35%, 40%, 50%",
+        "Precio de venta, utilidad bruta y margen por nivel",
+        "Margen objetivo personalizado",
+        "Basado en el costo nacionalizado del prorrateo"
+      ]
+    },
+    "history": {
+      "title": "Historial de Importaciones",
+      "subtitle": "Cada importación guardada, con comparación",
+      "features": [
+        "Registro por importación: fecha, proveedor, FOB, logística, impuestos, costo total",
+        "Comparar importaciones lado a lado",
+        "Evolución del costo en el tiempo",
+        "Exportar/importar Excel/JSON (librería segura por definir)"
+      ]
+    },
+    "simulator": {
+      "title": "Simulador de Escenarios",
+      "subtitle": "Cambie los datos y vea el costo nacionalizado recalcularse al instante",
+      "features": [
+        "Ajustar tipo de cambio, flete, seguro, tasas de impuestos, cantidades",
+        "Todo se recalcula al instante (motor en el navegador)",
+        "Comparar contra el escenario base",
+        "Sin llamadas al servidor — cálculo puro en el navegador"
+      ]
+    }
+  }
+}

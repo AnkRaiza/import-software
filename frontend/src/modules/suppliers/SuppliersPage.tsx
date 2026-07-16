@@ -3,6 +3,7 @@
 
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useTranslation } from 'react-i18next'
 import { Pencil, PackageSearch, Plus, Trash2 } from 'lucide-react'
 import { repo, type NewEntity } from '../../lib/repo'
 import type { Supplier } from '../../lib/db/types'
@@ -13,6 +14,7 @@ import { Card, EmptyState, PageHeader } from '../../components/ui'
 import { SUPPLIER_FORM_ID, SupplierForm } from './SupplierForm'
 
 export default function SuppliersPage() {
+  const { t } = useTranslation()
   const suppliers = useLiveQuery(() => repo.suppliers.all(), [])
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState<Supplier | undefined>()
@@ -42,12 +44,12 @@ export default function SuppliersPage() {
   return (
     <>
       <PageHeader
-        title="Suppliers"
-        subtitle="Manage supplier companies and trading terms"
+        title={t('suppliers.title')}
+        subtitle={t('suppliers.subtitle')}
         actions={
           <Button onClick={openCreate}>
             <Plus className="size-4" />
-            Add Supplier
+            {t('suppliers.add')}
           </Button>
         }
       />
@@ -55,20 +57,20 @@ export default function SuppliersPage() {
       {suppliers === undefined ? null : suppliers.length === 0 ? (
         <EmptyState
           icon={<PackageSearch className="size-10" />}
-          title="No suppliers yet"
-          description="Add your first supplier to start building purchase orders."
+          title={t('suppliers.emptyTitle')}
+          description={t('suppliers.emptyDesc')}
         />
       ) : (
         <Card className="overflow-x-auto p-0">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-muted">
-                <th className="px-4 py-3 font-medium">Company</th>
-                <th className="px-4 py-3 font-medium">Contact</th>
-                <th className="px-4 py-3 font-medium">Country</th>
-                <th className="px-4 py-3 font-medium">Currency</th>
-                <th className="px-4 py-3 font-medium">Incoterms</th>
-                <th className="px-4 py-3 font-medium">Payment Terms</th>
+                <th className="px-4 py-3 font-medium">{t('suppliers.col.company')}</th>
+                <th className="px-4 py-3 font-medium">{t('suppliers.col.contact')}</th>
+                <th className="px-4 py-3 font-medium">{t('suppliers.col.country')}</th>
+                <th className="px-4 py-3 font-medium">{t('suppliers.col.currency')}</th>
+                <th className="px-4 py-3 font-medium">{t('suppliers.col.incoterms')}</th>
+                <th className="px-4 py-3 font-medium">{t('suppliers.col.paymentTerms')}</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -79,12 +81,12 @@ export default function SuppliersPage() {
                   className="border-b border-border last:border-0 hover:bg-surface-2"
                 >
                   <td className="px-4 py-3 font-medium">{s.company}</td>
-                  <td className="px-4 py-3 text-muted">{s.contact || '—'}</td>
-                  <td className="px-4 py-3 text-muted">{s.country || '—'}</td>
+                  <td className="px-4 py-3 text-muted">{s.contact || t('common.none')}</td>
+                  <td className="px-4 py-3 text-muted">{s.country || t('common.none')}</td>
                   <td className="px-4 py-3">{s.currency}</td>
-                  <td className="px-4 py-3 text-muted">{s.incoterms || '—'}</td>
+                  <td className="px-4 py-3 text-muted">{s.incoterms || t('common.none')}</td>
                   <td className="px-4 py-3 text-muted">
-                    {s.paymentTerms || '—'}
+                    {s.paymentTerms || t('common.none')}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-1">
@@ -92,7 +94,7 @@ export default function SuppliersPage() {
                         variant="ghost"
                         size="sm"
                         onClick={() => openEdit(s)}
-                        aria-label={`Edit ${s.company}`}
+                        aria-label={`${t('common.edit')} ${s.company}`}
                       >
                         <Pencil className="size-4" />
                       </Button>
@@ -100,7 +102,7 @@ export default function SuppliersPage() {
                         variant="ghost"
                         size="sm"
                         onClick={() => setDeleting(s)}
-                        aria-label={`Delete ${s.company}`}
+                        aria-label={`${t('common.delete')} ${s.company}`}
                       >
                         <Trash2 className="size-4 text-negative" />
                       </Button>
@@ -116,14 +118,14 @@ export default function SuppliersPage() {
       <Modal
         open={formOpen}
         onClose={() => setFormOpen(false)}
-        title={editing ? 'Edit Supplier' : 'Add Supplier'}
+        title={editing ? t('suppliers.edit') : t('suppliers.add')}
         footer={
           <>
             <Button variant="secondary" onClick={() => setFormOpen(false)}>
-              Cancel
+              {t('common.cancel')}
             </Button>
             <Button type="submit" form={SUPPLIER_FORM_ID}>
-              {editing ? 'Save Changes' : 'Add Supplier'}
+              {editing ? t('common.saveChanges') : t('suppliers.add')}
             </Button>
           </>
         }
@@ -138,8 +140,9 @@ export default function SuppliersPage() {
 
       <ConfirmDialog
         open={!!deleting}
-        title="Delete supplier"
-        message={`Delete "${deleting?.company}"? This cannot be undone.`}
+        title={t('suppliers.deleteTitle')}
+        message={t('suppliers.deleteMessage', { name: deleting?.company })}
+        confirmLabel={t('common.delete')}
         onConfirm={confirmDelete}
         onCancel={() => setDeleting(undefined)}
       />

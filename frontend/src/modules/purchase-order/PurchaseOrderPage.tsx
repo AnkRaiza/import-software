@@ -1,19 +1,18 @@
+import { useTranslation } from 'react-i18next'
 import { ComingSoon, PageHeader } from '../../components/ui'
 
 export default function PurchaseOrderPage() {
+  const { t } = useTranslation()
   return (
     <>
       <PageHeader
-        title="Purchase Order"
-        subtitle="Build an order from catalog products — FOB is always calculated"
+        title={t('modules.purchaseOrder.title')}
+        subtitle={t('modules.purchaseOrder.subtitle')}
       />
       <ComingSoon
-        features={[
-          'Select supplier and products, enter quantities',
-          'Auto-retrieve unit price, area, and weight from the catalog',
-          'Auto-calculate line totals, total quantity/weight/area, and FOB total',
-          'FOB is never entered manually (PRD rule)',
-        ]}
+        features={
+          t('modules.purchaseOrder.features', { returnObjects: true }) as string[]
+        }
       />
     </>
   )

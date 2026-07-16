@@ -1,19 +1,16 @@
+import { useTranslation } from 'react-i18next'
 import { ComingSoon, PageHeader } from '../../components/ui'
 
 export default function CustomsPage() {
+  const { t } = useTranslation()
   return (
     <>
       <PageHeader
-        title="Customs (SUNAT)"
-        subtitle="Peruvian customs duties and taxes"
+        title={t('modules.customs.title')}
+        subtitle={t('modules.customs.subtitle')}
       />
       <ComingSoon
-        features={[
-          'Inputs: exchange rate, Ad Valorem %, IGV %, IPM %, Perception %',
-          'Auto-calculated CIF and tax base',
-          'Ad Valorem, IGV, IPM, and Perception amounts',
-          'Total SUNAT taxes',
-        ]}
+        features={t('modules.customs.features', { returnObjects: true }) as string[]}
       />
     </>
   )

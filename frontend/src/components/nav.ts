@@ -16,21 +16,22 @@ import {
 
 export interface NavItem {
   path: string
-  label: string
+  /** i18n key for the sidebar label. */
+  labelKey: string
   icon: LucideIcon
   /** PRD module number, for reference. */
   module: number
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { path: '/', label: 'Dashboard', icon: LayoutDashboard, module: 1 },
-  { path: '/products', label: 'Product Catalog', icon: Boxes, module: 2 },
-  { path: '/suppliers', label: 'Suppliers', icon: PackageSearch, module: 3 },
-  { path: '/purchase-order', label: 'Purchase Order', icon: Truck, module: 4 },
-  { path: '/logistics', label: 'Logistics', icon: Ship, module: 5 },
-  { path: '/customs', label: 'Customs (SUNAT)', icon: Percent, module: 6 },
-  { path: '/allocation', label: 'Cost Allocation', icon: ArrowLeftRight, module: 7 },
-  { path: '/pricing', label: 'Pricing', icon: DollarSign, module: 8 },
-  { path: '/history', label: 'Import History', icon: History, module: 9 },
-  { path: '/simulator', label: 'Scenario Simulator', icon: Calculator, module: 10 },
+  { path: '/', labelKey: 'nav.dashboard', icon: LayoutDashboard, module: 1 },
+  { path: '/products', labelKey: 'nav.products', icon: Boxes, module: 2 },
+  { path: '/suppliers', labelKey: 'nav.suppliers', icon: PackageSearch, module: 3 },
+  { path: '/purchase-order', labelKey: 'nav.purchaseOrder', icon: Truck, module: 4 },
+  { path: '/logistics', labelKey: 'nav.logistics', icon: Ship, module: 5 },
+  { path: '/customs', labelKey: 'nav.customs', icon: Percent, module: 6 },
+  { path: '/allocation', labelKey: 'nav.allocation', icon: ArrowLeftRight, module: 7 },
+  { path: '/pricing', labelKey: 'nav.pricing', icon: DollarSign, module: 8 },
+  { path: '/history', labelKey: 'nav.history', icon: History, module: 9 },
+  { path: '/simulator', labelKey: 'nav.simulator', icon: Calculator, module: 10 },
 ]

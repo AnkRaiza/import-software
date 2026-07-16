@@ -1,19 +1,16 @@
+import { useTranslation } from 'react-i18next'
 import { ComingSoon, PageHeader } from '../../components/ui'
 
 export default function CostAllocationPage() {
+  const { t } = useTranslation()
   return (
     <>
       <PageHeader
-        title="Cost Allocation"
-        subtitle="Distribute logistics and taxes across products"
+        title={t('modules.allocation.title')}
+        subtitle={t('modules.allocation.subtitle')}
       />
       <ComingSoon
-        features={[
-          'Allocation methods: by quantity, weight, area (m²), or FOB value',
-          'Proportional logistics and tax allocation per product',
-          'Final table: FOB, logistics, tax, landed cost, cost/unit, cost/m²',
-          'Recomputed instantly by the shared calc engine',
-        ]}
+        features={t('modules.allocation.features', { returnObjects: true }) as string[]}
       />
     </>
   )

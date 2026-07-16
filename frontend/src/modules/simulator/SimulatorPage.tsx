@@ -1,19 +1,16 @@
+import { useTranslation } from 'react-i18next'
 import { ComingSoon, PageHeader } from '../../components/ui'
 
 export default function SimulatorPage() {
+  const { t } = useTranslation()
   return (
     <>
       <PageHeader
-        title="Scenario Simulator"
-        subtitle="Change inputs and see landed cost recalculate instantly"
+        title={t('modules.simulator.title')}
+        subtitle={t('modules.simulator.subtitle')}
       />
       <ComingSoon
-        features={[
-          'Adjust exchange rate, freight, insurance, tax rates, quantities',
-          'Everything recalculates instantly (client-side engine)',
-          'Compare against the base scenario',
-          'No round-trips — pure in-browser math',
-        ]}
+        features={t('modules.simulator.features', { returnObjects: true }) as string[]}
       />
     </>
   )

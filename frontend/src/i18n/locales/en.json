@@ -1,0 +1,159 @@
+{
+  "app": {
+    "name": "Import Cost",
+    "system": "Management System",
+    "tagline": "Landed cost calculator · Peru imports",
+    "mvpNote": "MVP · Local data"
+  },
+  "common": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "none": "—",
+    "language": "Language",
+    "toggleNav": "Toggle navigation",
+    "toggleTheme": "Toggle theme",
+    "close": "Close"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "products": "Product Catalog",
+    "suppliers": "Suppliers",
+    "purchaseOrder": "Purchase Order",
+    "logistics": "Logistics",
+    "customs": "Customs (SUNAT)",
+    "allocation": "Cost Allocation",
+    "pricing": "Pricing",
+    "history": "Import History",
+    "simulator": "Scenario Simulator"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Executive overview of your imports",
+    "emptyTitle": "No imports yet",
+    "emptyDesc": "Create your first import to see landed-cost KPIs, cost breakdowns, and history here.",
+    "aggregated_one": "Aggregated across {{count}} import",
+    "aggregated_other": "Aggregated across {{count}} imports",
+    "unitsHint": "{{value}} units",
+    "areaHint": "{{value}} m²",
+    "kpi": {
+      "totalFob": "Total FOB",
+      "logistics": "Logistics Cost",
+      "taxes": "Customs Taxes",
+      "landed": "Total Landed Cost",
+      "avgUnit": "Avg Cost / Unit",
+      "avgM2": "Avg Cost / m²",
+      "selling": "Suggested Selling Price",
+      "margin": "Gross Margin"
+    }
+  },
+  "comingSoon": {
+    "badge": "Planned for the MVP"
+  },
+  "suppliers": {
+    "title": "Suppliers",
+    "subtitle": "Manage supplier companies and trading terms",
+    "add": "Add Supplier",
+    "edit": "Edit Supplier",
+    "emptyTitle": "No suppliers yet",
+    "emptyDesc": "Add your first supplier to start building purchase orders.",
+    "col": {
+      "company": "Company",
+      "contact": "Contact",
+      "country": "Country",
+      "currency": "Currency",
+      "incoterms": "Incoterms",
+      "paymentTerms": "Payment Terms"
+    },
+    "form": {
+      "notes": "Notes",
+      "companyRequired": "Company is required"
+    },
+    "deleteTitle": "Delete supplier",
+    "deleteMessage": "Delete \"{{name}}\"? This cannot be undone."
+  },
+  "modules": {
+    "products": {
+      "title": "Product Catalog",
+      "subtitle": "Reusable catalog of importable products (SKU, dimensions, FOB price)",
+      "features": [
+        "Add/edit products: SKU, name, category, thickness, finish (1/2-side UV)",
+        "Dimensions with auto-calculated area (m²), weight, unit FOB price",
+        "Link products to suppliers",
+        "Unlimited products with search and filtering"
+      ]
+    },
+    "purchaseOrder": {
+      "title": "Purchase Order",
+      "subtitle": "Build an order from catalog products — FOB is always calculated",
+      "features": [
+        "Select supplier and products, enter quantities",
+        "Auto-retrieve unit price, area, and weight from the catalog",
+        "Auto-calculate line totals, total quantity/weight/area, and FOB total",
+        "FOB is never entered manually (PRD rule)"
+      ]
+    },
+    "logistics": {
+      "title": "Logistics",
+      "subtitle": "International, destination, and customs-broker costs",
+      "features": [
+        "International: ocean freight, insurance, BL service, other",
+        "Destination: deconsolidation, warehouse, handling, customs release, monitoring, port charges",
+        "Customs broker: brokerage, processing, local delivery, misc",
+        "Auto-calculated subtotals and total logistics cost"
+      ]
+    },
+    "customs": {
+      "title": "Customs (SUNAT)",
+      "subtitle": "Peruvian customs duties and taxes",
+      "features": [
+        "Inputs: exchange rate, Ad Valorem %, IGV %, IPM %, Perception %",
+        "Auto-calculated CIF and tax base",
+        "Ad Valorem, IGV, IPM, and Perception amounts",
+        "Total SUNAT taxes"
+      ]
+    },
+    "allocation": {
+      "title": "Cost Allocation",
+      "subtitle": "Distribute logistics and taxes across products",
+      "features": [
+        "Allocation methods: by quantity, weight, area (m²), or FOB value",
+        "Proportional logistics and tax allocation per product",
+        "Final table: FOB, logistics, tax, landed cost, cost/unit, cost/m²",
+        "Recomputed instantly by the shared calc engine"
+      ]
+    },
+    "pricing": {
+      "title": "Pricing",
+      "subtitle": "Selling prices and margins from landed cost",
+      "features": [
+        "Margin tiers: 20%, 25%, 30%, 35%, 40%, 50%",
+        "Selling price, gross profit, and margin per tier",
+        "Custom target margin",
+        "Driven by the landed cost from allocation"
+      ]
+    },
+    "history": {
+      "title": "Import History",
+      "subtitle": "Every saved import, with comparison",
+      "features": [
+        "Record per import: date, supplier, FOB, logistics, taxes, total cost",
+        "Compare imports side by side",
+        "Cost evolution over time",
+        "Excel/JSON export and import (secure library TBD)"
+      ]
+    },
+    "simulator": {
+      "title": "Scenario Simulator",
+      "subtitle": "Change inputs and see landed cost recalculate instantly",
+      "features": [
+        "Adjust exchange rate, freight, insurance, tax rates, quantities",
+        "Everything recalculates instantly (client-side engine)",
+        "Compare against the base scenario",
+        "No round-trips — pure in-browser math"
+      ]
+    }
+  }
+}

@@ -3,6 +3,7 @@
 
 import { useLiveQuery } from 'dexie-react-hooks'
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { LayoutDashboard } from 'lucide-react'
 import { repo } from '../../lib/repo'
 import { calculateImport } from '../../lib/calc/engine'
@@ -30,6 +31,7 @@ function KpiCard({
 }
 
 export default function DashboardPage() {
+  const { t } = useTranslation()
   const imports = useLiveQuery(() => repo.imports.all(), [])
 
   if (imports === undefined) return null // loading
@@ -38,13 +40,13 @@ export default function DashboardPage() {
     return (
       <>
         <PageHeader
-          title="Dashboard"
-          subtitle="Executive overview of your imports"
+          title={t('dashboard.title')}
+          subtitle={t('dashboard.subtitle')}
         />
         <EmptyState
           icon={<LayoutDashboard className="size-10" />}
-          title="No imports yet"
-          description="Create your first import to see landed-cost KPIs, cost breakdowns, and history here."
+          title={t('dashboard.emptyTitle')}
+          description={t('dashboard.emptyDesc')}
         />
       </>
     )
@@ -83,32 +85,41 @@ export default function DashboardPage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        subtitle={`Aggregated across ${imports.length} import${imports.length > 1 ? 's' : ''}`}
+        title={t('dashboard.title')}
+        subtitle={t('dashboard.aggregated', { count: imports.length })}
       />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Total FOB" value={formatMoney(totals.fob)} />
-        <KpiCard label="Logistics Cost" value={formatMoney(totals.logistics)} />
-        <KpiCard label="Customs Taxes" value={formatMoney(totals.taxes)} />
+        <KpiCard label={t('dashboard.kpi.totalFob')} value={formatMoney(totals.fob)} />
         <KpiCard
-          label="Total Landed Cost"
+          label={t('dashboard.kpi.logistics')}
+          value={formatMoney(totals.logistics)}
+        />
+        <KpiCard
+          label={t('dashboard.kpi.taxes')}
+          value={formatMoney(totals.taxes)}
+        />
+        <KpiCard
+          label={t('dashboard.kpi.landed')}
           value={formatMoney(totals.landed)}
         />
         <KpiCard
-          label="Avg Cost / Unit"
+          label={t('dashboard.kpi.avgUnit')}
           value={formatMoney(avgPerUnit)}
-          hint={`${formatNumber(totals.units, 0)} units`}
+          hint={t('dashboard.unitsHint', { value: formatNumber(totals.units, 0) })}
         />
         <KpiCard
-          label="Avg Cost / m²"
+          label={t('dashboard.kpi.avgM2')}
           value={formatMoney(avgPerM2)}
-          hint={`${formatNumber(totals.area, 2)} m²`}
+          hint={t('dashboard.areaHint', { value: formatNumber(totals.area, 2) })}
         />
         <KpiCard
-          label="Suggested Selling Price"
+          label={t('dashboard.kpi.selling')}
           value={formatMoney(totals.selling)}
         />
-        <KpiCard label="Gross Margin" value={formatPercent(grossMargin)} />
+        <KpiCard
+          label={t('dashboard.kpi.margin')}
+          value={formatPercent(grossMargin)}
+        />
       </div>
     </>
   )

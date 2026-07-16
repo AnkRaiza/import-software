@@ -3,6 +3,7 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import { CURRENCIES, INCOTERMS, type Supplier } from '../../lib/db/types'
 import type { NewEntity } from '../../lib/repo'
@@ -11,7 +12,7 @@ import { SelectField, TextAreaField, TextField } from '../../components/fields'
 export const SUPPLIER_FORM_ID = 'supplier-form'
 
 const schema = z.object({
-  company: z.string().trim().min(1, 'Company is required'),
+  company: z.string().trim().min(1, 'suppliers.form.companyRequired'),
   contact: z.string().trim().optional(),
   country: z.string().trim().optional(),
   currency: z.enum(CURRENCIES as [string, ...string[]]),
@@ -29,6 +30,7 @@ export function SupplierForm({
   initial?: Supplier
   onSubmit: (values: NewEntity<Supplier>) => void
 }) {
+  const { t } = useTranslation()
   const {
     register,
     handleSubmit,
@@ -61,18 +63,18 @@ export function SupplierForm({
   return (
     <form id={SUPPLIER_FORM_ID} onSubmit={submit} className="space-y-4">
       <TextField
-        label="Company"
+        label={t('suppliers.col.company')}
         required
-        error={errors.company?.message}
+        error={errors.company?.message ? t(errors.company.message) : undefined}
         {...register('company')}
       />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <TextField label="Contact" {...register('contact')} />
-        <TextField label="Country" {...register('country')} />
+        <TextField label={t('suppliers.col.contact')} {...register('contact')} />
+        <TextField label={t('suppliers.col.country')} {...register('country')} />
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <SelectField
-          label="Currency"
+          label={t('suppliers.col.currency')}
           required
           error={errors.currency?.message}
           {...register('currency')}
@@ -83,8 +85,8 @@ export function SupplierForm({
             </option>
           ))}
         </SelectField>
-        <SelectField label="Incoterms" {...register('incoterms')}>
-          <option value="">—</option>
+        <SelectField label={t('suppliers.col.incoterms')} {...register('incoterms')}>
+          <option value="">{t('common.none')}</option>
           {INCOTERMS.map((i) => (
             <option key={i} value={i}>
               {i}
@@ -92,8 +94,8 @@ export function SupplierForm({
           ))}
         </SelectField>
       </div>
-      <TextField label="Payment Terms" {...register('paymentTerms')} />
-      <TextAreaField label="Notes" {...register('notes')} />
+      <TextField label={t('suppliers.col.paymentTerms')} {...register('paymentTerms')} />
+      <TextAreaField label={t('suppliers.form.notes')} {...register('notes')} />
     </form>
   )
 }

@@ -1,19 +1,16 @@
+import { useTranslation } from 'react-i18next'
 import { ComingSoon, PageHeader } from '../../components/ui'
 
 export default function PricingPage() {
+  const { t } = useTranslation()
   return (
     <>
       <PageHeader
-        title="Pricing"
-        subtitle="Selling prices and margins from landed cost"
+        title={t('modules.pricing.title')}
+        subtitle={t('modules.pricing.subtitle')}
       />
       <ComingSoon
-        features={[
-          'Margin tiers: 20%, 25%, 30%, 35%, 40%, 50%',
-          'Selling price, gross profit, and margin per tier',
-          'Custom target margin',
-          'Driven by the landed cost from allocation',
-        ]}
+        features={t('modules.pricing.features', { returnObjects: true }) as string[]}
       />
     </>
   )
