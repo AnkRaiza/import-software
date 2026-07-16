@@ -8,7 +8,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { repo, type NewEntity } from './repo'
 import type { ImportRecord, LogisticsCosts } from './db/types'
 
-const ACTIVE_KEY = 'icm-active-import'
+export const ACTIVE_IMPORT_KEY = 'icm-active-import'
 
 // Tiny external store so every useActiveImport() instance (e.g. the switcher
 // and the page it sits on) stays in sync on the active id.
@@ -17,10 +17,10 @@ const subscribe = (cb: () => void) => {
   listeners.add(cb)
   return () => listeners.delete(cb)
 }
-const getActiveIdSnapshot = () => localStorage.getItem(ACTIVE_KEY)
+const getActiveIdSnapshot = () => localStorage.getItem(ACTIVE_IMPORT_KEY)
 function writeActiveId(id: string | null) {
-  if (id) localStorage.setItem(ACTIVE_KEY, id)
-  else localStorage.removeItem(ACTIVE_KEY)
+  if (id) localStorage.setItem(ACTIVE_IMPORT_KEY, id)
+  else localStorage.removeItem(ACTIVE_IMPORT_KEY)
   listeners.forEach((l) => l())
 }
 
@@ -49,14 +49,14 @@ export function createBlankImport(name?: string): NewEntity<ImportRecord> {
     items: [],
     logistics: blankLogistics(),
     taxes: {
-      exchangeRate: 3.75,
-      adValoremPct: 0,
-      igvPct: 16,
+      exchangeRate: 3.7,
+      adValoremPct: 6,
+      igvPct: 18,
       ipmPct: 2,
       perceptionPct: 3.5,
     },
-    allocationMethod: 'fob',
-    targetMargin: 0.3,
+    allocationMethod: 'quantity',
+    targetMargin: 0.35,
   }
 }
 
