@@ -74,6 +74,38 @@
     "deleteTitle": "Delete supplier",
     "deleteMessage": "Delete \"{{name}}\"? This cannot be undone."
   },
+  "products": {
+    "add": "Add Product",
+    "edit": "Edit Product",
+    "emptyTitle": "No products yet",
+    "emptyDesc": "Add your first product to build purchase orders.",
+    "noSupplier": "No supplier",
+    "areaAuto": "Auto-calculated (length × width)",
+    "col": {
+      "sku": "SKU",
+      "name": "Name",
+      "category": "Category",
+      "thickness": "Thickness (mm)",
+      "finish": "Finish",
+      "length": "Length (m)",
+      "width": "Width (m)",
+      "area": "Area (m²)",
+      "weight": "Weight (kg)",
+      "fob": "Unit FOB",
+      "supplier": "Supplier"
+    },
+    "finish": {
+      "oneSide": "1-Side UV",
+      "twoSide": "2-Side UV"
+    },
+    "form": {
+      "skuRequired": "SKU is required",
+      "nameRequired": "Name is required",
+      "positiveNumber": "Must be 0 or more"
+    },
+    "deleteTitle": "Delete product",
+    "deleteMessage": "Delete \"{{name}}\"? This cannot be undone."
+  },
   "modules": {
     "products": {
       "title": "Product Catalog",

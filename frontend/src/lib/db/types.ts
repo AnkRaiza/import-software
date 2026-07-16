@@ -116,6 +116,13 @@ export interface ImportRecord extends Timestamped {
 
 export const CURRENCIES: Currency[] = ['USD', 'CNY', 'PEN', 'EUR']
 export const INCOTERMS: Incoterm[] = ['FOB', 'CIF', 'EXW', 'FCA', 'CFR', 'DDP']
+export const FINISHES: Finish[] = ['1-side-uv', '2-side-uv']
+
+/** i18n key for a finish value's display label. */
+export const FINISH_LABEL_KEYS: Record<Finish, string> = {
+  '1-side-uv': 'products.finish.oneSide',
+  '2-side-uv': 'products.finish.twoSide',
+}
 export const ALLOCATION_METHODS: AllocationMethod[] = [
   'quantity',
   'weight',

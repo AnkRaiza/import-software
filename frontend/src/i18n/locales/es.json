@@ -74,6 +74,38 @@
     "deleteTitle": "Eliminar proveedor",
     "deleteMessage": "¿Eliminar \"{{name}}\"? Esta acción no se puede deshacer."
   },
+  "products": {
+    "add": "Agregar Producto",
+    "edit": "Editar Producto",
+    "emptyTitle": "Aún no hay productos",
+    "emptyDesc": "Agregue su primer producto para crear órdenes de compra.",
+    "noSupplier": "Sin proveedor",
+    "areaAuto": "Calculado automáticamente (largo × ancho)",
+    "col": {
+      "sku": "SKU",
+      "name": "Nombre",
+      "category": "Categoría",
+      "thickness": "Espesor (mm)",
+      "finish": "Acabado",
+      "length": "Largo (m)",
+      "width": "Ancho (m)",
+      "area": "Área (m²)",
+      "weight": "Peso (kg)",
+      "fob": "FOB Unitario",
+      "supplier": "Proveedor"
+    },
+    "finish": {
+      "oneSide": "UV 1 Cara",
+      "twoSide": "UV 2 Caras"
+    },
+    "form": {
+      "skuRequired": "El SKU es obligatorio",
+      "nameRequired": "El nombre es obligatorio",
+      "positiveNumber": "Debe ser 0 o más"
+    },
+    "deleteTitle": "Eliminar producto",
+    "deleteMessage": "¿Eliminar \"{{name}}\"? Esta acción no se puede deshacer."
+  },
   "modules": {
     "products": {
       "title": "Catálogo de Productos",
