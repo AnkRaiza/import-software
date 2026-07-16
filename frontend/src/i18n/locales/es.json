@@ -213,6 +213,38 @@
     "margin": "Margen",
     "needLines": "Primero agregue líneas a la orden de compra para calcular los precios."
   },
+  "history": {
+    "col": {
+      "name": "Nombre",
+      "date": "Fecha",
+      "supplier": "Proveedor",
+      "fob": "FOB",
+      "logistics": "Logística",
+      "taxes": "Impuestos",
+      "total": "Costo Nacionalizado"
+    },
+    "active": "Activa",
+    "open": "Abrir",
+    "duplicate": "Duplicar",
+    "compare": "Comparar",
+    "compareTitle": "Comparación",
+    "copySuffix": " (copia)",
+    "emptyTitle": "Aún no hay importaciones",
+    "emptyDesc": "Cree su primera importación para empezar.",
+    "deleteTitle": "Eliminar importación",
+    "deleteMessage": "¿Eliminar \"{{name}}\"? Esta acción no se puede deshacer.",
+    "m": {
+      "fob": "FOB",
+      "logistics": "Logística",
+      "taxes": "Impuestos",
+      "landed": "Costo Nacionalizado",
+      "avgUnit": "Costo / Unidad",
+      "avgM2": "Costo / m²",
+      "units": "Unidades",
+      "weight": "Peso",
+      "area": "Área (m²)"
+    }
+  },
   "modules": {
     "products": {
       "title": "Catálogo de Productos",

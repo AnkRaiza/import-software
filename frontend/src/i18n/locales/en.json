@@ -213,6 +213,38 @@
     "margin": "Margin",
     "needLines": "Add purchase order lines first to calculate pricing."
   },
+  "history": {
+    "col": {
+      "name": "Name",
+      "date": "Date",
+      "supplier": "Supplier",
+      "fob": "FOB",
+      "logistics": "Logistics",
+      "taxes": "Taxes",
+      "total": "Landed Cost"
+    },
+    "active": "Active",
+    "open": "Open",
+    "duplicate": "Duplicate",
+    "compare": "Compare",
+    "compareTitle": "Comparison",
+    "copySuffix": " (copy)",
+    "emptyTitle": "No imports yet",
+    "emptyDesc": "Create your first import to get started.",
+    "deleteTitle": "Delete import",
+    "deleteMessage": "Delete \"{{name}}\"? This cannot be undone.",
+    "m": {
+      "fob": "FOB",
+      "logistics": "Logistics",
+      "taxes": "Taxes",
+      "landed": "Landed Cost",
+      "avgUnit": "Cost / Unit",
+      "avgM2": "Cost / m²",
+      "units": "Units",
+      "weight": "Weight",
+      "area": "Area (m²)"
+    }
+  },
   "modules": {
     "products": {
       "title": "Product Catalog",
