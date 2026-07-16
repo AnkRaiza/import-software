@@ -203,6 +203,16 @@
     "total": "Total",
     "needLines": "Add purchase order lines first to allocate costs."
   },
+  "pricing": {
+    "targetMargin": "Target Margin (%)",
+    "suggestedTitle": "Suggested Pricing",
+    "tiersTitle": "Margin Tiers",
+    "landedCost": "Landed Cost",
+    "sellingPrice": "Selling Price",
+    "grossProfit": "Gross Profit",
+    "margin": "Margin",
+    "needLines": "Add purchase order lines first to calculate pricing."
+  },
   "modules": {
     "products": {
       "title": "Product Catalog",

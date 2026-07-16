@@ -203,6 +203,16 @@
     "total": "Total",
     "needLines": "Primero agregue líneas a la orden de compra para prorratear los costos."
   },
+  "pricing": {
+    "targetMargin": "Margen Objetivo (%)",
+    "suggestedTitle": "Precio Sugerido",
+    "tiersTitle": "Niveles de Margen",
+    "landedCost": "Costo Nacionalizado",
+    "sellingPrice": "Precio de Venta",
+    "grossProfit": "Utilidad Bruta",
+    "margin": "Margen",
+    "needLines": "Primero agregue líneas a la orden de compra para calcular los precios."
+  },
   "modules": {
     "products": {
       "title": "Catálogo de Productos",
