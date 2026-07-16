@@ -245,6 +245,27 @@
       "area": "Área (m²)"
     }
   },
+  "simulator": {
+    "controlsTitle": "Ajustes",
+    "quantitiesTitle": "Cantidades",
+    "base": "Base",
+    "scenario": "Escenario",
+    "delta": "Cambio",
+    "reset": "Restablecer",
+    "saveAsNew": "Guardar como nueva importación",
+    "scenarioSuffix": " (escenario)",
+    "needLines": "Primero agregue líneas a la orden de compra para simular.",
+    "m": {
+      "fob": "FOB",
+      "logistics": "Logística",
+      "taxes": "Impuestos",
+      "landed": "Costo Nacionalizado",
+      "avgUnit": "Costo / Unidad",
+      "avgM2": "Costo / m²",
+      "selling": "Precio de Venta",
+      "margin": "Margen"
+    }
+  },
   "modules": {
     "products": {
       "title": "Catálogo de Productos",
