@@ -9,8 +9,11 @@
     "add": "Agregar",
     "edit": "Editar",
     "delete": "Eliminar",
+    "remove": "Quitar",
+    "save": "Guardar",
     "cancel": "Cancelar",
     "saveChanges": "Guardar Cambios",
+    "saved": "Guardado",
     "none": "—",
     "language": "Idioma",
     "toggleNav": "Alternar navegación",
@@ -105,6 +108,32 @@
     },
     "deleteTitle": "Eliminar producto",
     "deleteMessage": "¿Eliminar \"{{name}}\"? Esta acción no se puede deshacer."
+  },
+  "imports": {
+    "active": "Importación activa",
+    "select": "Seleccionar importación",
+    "new": "Nueva importación",
+    "none": "Sin importación activa",
+    "chooseOrCreate": "Seleccione una importación existente o cree una nueva para empezar."
+  },
+  "po": {
+    "supplier": "Proveedor",
+    "addLine": "Agregar línea",
+    "product": "Producto",
+    "selectProduct": "Seleccionar producto…",
+    "quantity": "Cantidad",
+    "unitFob": "FOB Unitario",
+    "unitArea": "Área Unit. (m²)",
+    "unitWeight": "Peso Unit. (kg)",
+    "lineTotal": "Total Línea",
+    "totals": "Totales",
+    "totalQuantity": "Cantidad Total",
+    "totalWeight": "Peso Total",
+    "totalArea": "Área Total",
+    "fobTotal": "FOB Total",
+    "fobNote": "El FOB se calcula automáticamente a partir de las líneas y nunca se ingresa manualmente.",
+    "emptyLines": "Aún no hay líneas — agregue un producto para empezar.",
+    "needProducts": "Primero agregue productos al catálogo y luego arme la orden aquí."
   },
   "modules": {
     "products": {

@@ -88,8 +88,36 @@ export interface CalcResult {
 
 export const DEFAULT_MARGIN_TIERS = [0.2, 0.25, 0.3, 0.35, 0.4, 0.5]
 
+export interface PurchaseOrderTotals {
+  totalQuantity: number
+  totalWeight: number
+  totalArea: number
+  fobTotal: number
+}
+
 const lineFob = (item: PurchaseOrderItem): Decimal =>
   d(item.unitFobPrice).times(d(item.quantity))
+
+/** Line FOB total for a single PO row (quantity × unit FOB price). */
+export const lineTotal = (item: PurchaseOrderItem): number => round(lineFob(item))
+
+/**
+ * Purchase-order rollups. FOB is always derived from the line items — it is
+ * never entered manually (PRD rule).
+ */
+export function computePurchaseOrderTotals(
+  items: PurchaseOrderItem[],
+): PurchaseOrderTotals {
+  return {
+    totalQuantity: round(sum(items.map((i) => i.quantity)), 4),
+    totalWeight: round(
+      sum(items.map((i) => d(i.quantity).times(d(i.weight)))),
+      4,
+    ),
+    totalArea: round(sum(items.map((i) => d(i.quantity).times(d(i.area)))), 4),
+    fobTotal: round(sum(items.map(lineFob))),
+  }
+}
 
 /** Weight used to distribute shared costs, per allocation method. */
 const allocationWeight = (

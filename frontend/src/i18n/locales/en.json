@@ -9,8 +9,11 @@
     "add": "Add",
     "edit": "Edit",
     "delete": "Delete",
+    "remove": "Remove",
+    "save": "Save",
     "cancel": "Cancel",
     "saveChanges": "Save Changes",
+    "saved": "Saved",
     "none": "—",
     "language": "Language",
     "toggleNav": "Toggle navigation",
@@ -105,6 +108,32 @@
     },
     "deleteTitle": "Delete product",
     "deleteMessage": "Delete \"{{name}}\"? This cannot be undone."
+  },
+  "imports": {
+    "active": "Active import",
+    "select": "Select an import",
+    "new": "New import",
+    "none": "No active import",
+    "chooseOrCreate": "Select an existing import or create a new one to begin."
+  },
+  "po": {
+    "supplier": "Supplier",
+    "addLine": "Add line",
+    "product": "Product",
+    "selectProduct": "Select product…",
+    "quantity": "Quantity",
+    "unitFob": "Unit FOB",
+    "unitArea": "Unit Area (m²)",
+    "unitWeight": "Unit Weight (kg)",
+    "lineTotal": "Line Total",
+    "totals": "Totals",
+    "totalQuantity": "Total Quantity",
+    "totalWeight": "Total Weight",
+    "totalArea": "Total Area",
+    "fobTotal": "FOB Total",
+    "fobNote": "FOB is calculated automatically from the lines and is never entered manually.",
+    "emptyLines": "No lines yet — add a product to begin.",
+    "needProducts": "Add products to the catalog first, then build the order here."
   },
   "modules": {
     "products": {

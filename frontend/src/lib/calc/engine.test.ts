@@ -8,6 +8,8 @@ import {
   calculateImport,
   computeCustoms,
   computeLogistics,
+  computePurchaseOrderTotals,
+  lineTotal,
   type CalcInput,
 } from './engine'
 import { d } from './money'
@@ -52,6 +54,28 @@ describe('computeLogistics', () => {
     expect(r.destination).toBe(175) // 40+30+20+25+15+35+10
     expect(r.broker).toBe(150) // 60+40+30+20
     expect(r.total).toBe(705)
+  })
+})
+
+// --- Purchase order totals ---------------------------------------------------
+
+describe('computePurchaseOrderTotals', () => {
+  it('derives quantity, weight, area, and FOB totals from line items', () => {
+    const r = computePurchaseOrderTotals(items)
+    expect(r.totalQuantity).toBe(150)
+    expect(r.totalWeight).toBe(900) // 100*5 + 50*8
+    expect(r.totalArea).toBe(350) // 100*2 + 50*3
+    expect(r.fobTotal).toBe(2000) // 100*10 + 50*20
+  })
+
+  it('returns zeros for an empty order', () => {
+    const r = computePurchaseOrderTotals([])
+    expect(r).toEqual({ totalQuantity: 0, totalWeight: 0, totalArea: 0, fobTotal: 0 })
+  })
+
+  it('lineTotal = quantity × unit FOB price', () => {
+    expect(lineTotal(items[0])).toBe(1000)
+    expect(lineTotal(items[1])).toBe(1000)
   })
 })
 
