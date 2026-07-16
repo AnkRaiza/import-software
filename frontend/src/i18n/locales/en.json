@@ -135,6 +135,31 @@
     "emptyLines": "No lines yet — add a product to begin.",
     "needProducts": "Add products to the catalog first, then build the order here."
   },
+  "logistics": {
+    "section": {
+      "international": "International",
+      "destination": "Destination",
+      "broker": "Customs Broker"
+    },
+    "subtotal": "Subtotal",
+    "total": "Total Logistics Cost",
+    "f": {
+      "oceanFreight": "Ocean Freight",
+      "insurance": "Insurance",
+      "blService": "BL Service",
+      "other": "Other Charges",
+      "deconsolidation": "Deconsolidation",
+      "warehouse": "Warehouse",
+      "handling": "Handling",
+      "customsRelease": "Customs Release",
+      "monitoring": "Monitoring",
+      "portCharges": "Port Charges",
+      "brokerage": "Brokerage",
+      "customsProcessing": "Customs Processing",
+      "localDelivery": "Local Delivery",
+      "miscellaneous": "Miscellaneous"
+    }
+  },
   "modules": {
     "products": {
       "title": "Product Catalog",

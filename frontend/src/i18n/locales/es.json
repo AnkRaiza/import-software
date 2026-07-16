@@ -135,6 +135,31 @@
     "emptyLines": "Aún no hay líneas — agregue un producto para empezar.",
     "needProducts": "Primero agregue productos al catálogo y luego arme la orden aquí."
   },
+  "logistics": {
+    "section": {
+      "international": "Internacional",
+      "destination": "Destino",
+      "broker": "Agente de Aduana"
+    },
+    "subtotal": "Subtotal",
+    "total": "Costo Logístico Total",
+    "f": {
+      "oceanFreight": "Flete Marítimo",
+      "insurance": "Seguro",
+      "blService": "Servicio de BL",
+      "other": "Otros Gastos",
+      "deconsolidation": "Desconsolidación",
+      "warehouse": "Almacén",
+      "handling": "Manipuleo",
+      "customsRelease": "Levante Aduanero",
+      "monitoring": "Monitoreo",
+      "portCharges": "Gastos Portuarios",
+      "brokerage": "Comisión",
+      "customsProcessing": "Tramitación",
+      "localDelivery": "Entrega Local",
+      "miscellaneous": "Varios"
+    }
+  },
   "modules": {
     "products": {
       "title": "Catálogo de Productos",
