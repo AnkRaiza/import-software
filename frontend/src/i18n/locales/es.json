@@ -183,6 +183,26 @@
       "total": "Total Tributos SUNAT"
     }
   },
+  "allocation": {
+    "method": "Método de Prorrateo",
+    "methods": {
+      "quantity": "Por Cantidad",
+      "weight": "Por Peso",
+      "area": "Por Área (m²)",
+      "fob": "Por Valor FOB"
+    },
+    "col": {
+      "product": "Producto",
+      "fob": "FOB",
+      "logistics": "Logística",
+      "tax": "Impuestos",
+      "landed": "Costo Nacionalizado",
+      "costPerUnit": "Costo / Unidad",
+      "costPerM2": "Costo / m²"
+    },
+    "total": "Total",
+    "needLines": "Primero agregue líneas a la orden de compra para prorratear los costos."
+  },
   "modules": {
     "products": {
       "title": "Catálogo de Productos",

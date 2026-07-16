@@ -183,6 +183,26 @@
       "total": "Total SUNAT Taxes"
     }
   },
+  "allocation": {
+    "method": "Allocation Method",
+    "methods": {
+      "quantity": "By Quantity",
+      "weight": "By Weight",
+      "area": "By Area (m²)",
+      "fob": "By FOB Value"
+    },
+    "col": {
+      "product": "Product",
+      "fob": "FOB",
+      "logistics": "Logistics",
+      "tax": "Taxes",
+      "landed": "Landed Cost",
+      "costPerUnit": "Cost / Unit",
+      "costPerM2": "Cost / m²"
+    },
+    "total": "Total",
+    "needLines": "Add purchase order lines first to allocate costs."
+  },
   "modules": {
     "products": {
       "title": "Product Catalog",
