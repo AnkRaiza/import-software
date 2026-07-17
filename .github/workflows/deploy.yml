@@ -45,9 +45,12 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           local-dir: ./frontend/dist/
+          # Leave server-managed folders alone (SSL validation, cgi-bin).
           exclude: |
             **/.git*
             **/.git*/**
+            **/.well-known/**
+            **/cgi-bin/**
 
   # --- Presentational site → nisaro.tech (root) ----------------------------
   site:
