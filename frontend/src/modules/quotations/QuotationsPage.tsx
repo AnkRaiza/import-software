@@ -34,6 +34,7 @@ export default function QuotationsPage() {
   const quotations = useLiveQuery(() => repo.quotations.all(), [])
   const [editor, setEditor] = useState<Quotation | 'new' | null>(null)
   const [deleting, setDeleting] = useState<Quotation | undefined>()
+  const [preview, setPreview] = useState<{ url: string; q: Quotation } | null>(null)
 
   const money = useMoneyFormatter()
 
@@ -70,6 +71,29 @@ export default function QuotationsPage() {
       money: (n) => money(n, q.currency),
     })
   }
+
+  const openPreview = async (q: Quotation) => {
+    const [{ getQuotationPdfBlobUrl }, company] = await Promise.all([
+      import('../../lib/pdf/quotationPdf'),
+      getCompanyProfile(),
+    ])
+    const url = getQuotationPdfBlobUrl({
+      quotation: q,
+      company,
+      t: (k) => t(`quotations.pdf.${k}`),
+      money: (n) => money(n, q.currency),
+    })
+    setPreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev.url)
+      return { url, q }
+    })
+  }
+
+  const closePreview = () =>
+    setPreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev.url)
+      return null
+    })
 
   return (
     <>
@@ -113,6 +137,9 @@ export default function QuotationsPage() {
                     <td className="px-4 py-3 text-right tabular-nums">{money(totals.total, q.currency)}</td>
                     <td className="px-4 py-3">
                       <div className="flex justify-end gap-1">
+                        <Button variant="ghost" size="sm" onClick={() => openPreview(q)} aria-label={t('quotations.preview')}>
+                          <Eye className="size-4" />
+                        </Button>
                         <Button variant="ghost" size="sm" onClick={() => download(q)} aria-label={t('quotations.downloadPdf')}>
                           <Download className="size-4" />
                         </Button>
@@ -143,6 +170,29 @@ export default function QuotationsPage() {
         onConfirm={confirmDelete}
         onCancel={() => setDeleting(undefined)}
       />
+
+      <Modal
+        open={!!preview}
+        onClose={closePreview}
+        title={preview ? `${t('quotations.preview')} — ${preview.q.number}` : t('quotations.preview')}
+        size="xl"
+        footer={
+          preview && (
+            <Button onClick={() => download(preview.q)}>
+              <Download className="size-4" />
+              {t('quotations.downloadPdf')}
+            </Button>
+          )
+        }
+      >
+        {preview && (
+          <iframe
+            src={preview.url}
+            title={t('quotations.preview')}
+            className="h-[70vh] w-full rounded border border-border"
+          />
+        )}
+      </Modal>
     </>
   )
 }
