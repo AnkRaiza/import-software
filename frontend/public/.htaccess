@@ -1,14 +1,15 @@
 # app.nisaro.tech — Import Cost Management tool (Apache / HostGator).
 
-# --- Access control (HTTP Basic Auth) ---------------------------------------
+# --- Access control (HTTP Basic Auth) — DISABLED until .htpasswd exists ------
+# To turn on password protection:
+#   1) On the server (cPanel Terminal / SSH):  htpasswd -c ~/.htpasswd <username>
+#   2) Uncomment the four lines below (and confirm the home path is correct).
 # The password file lives OUTSIDE this deployed folder so FTP deploys never
-# overwrite or delete it. Create it once (see repo README / setup notes):
-#   ssh: htpasswd -c ~/.htpasswd <username>
-# Adjust the path below if your account home differs from /home3/clownart.
-AuthType Basic
-AuthName "Nisaro Tools"
-AuthUserFile /home3/clownart/.htpasswd
-Require valid-user
+# overwrite or delete it.
+# AuthType Basic
+# AuthName "Nisaro Tools"
+# AuthUserFile /home3/clownart/.htpasswd
+# Require valid-user
 
 # --- SPA routing ------------------------------------------------------------
 # Any request that is not a real file/directory -> index.html so React Router
