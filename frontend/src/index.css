@@ -3,32 +3,39 @@
 /* Class-based dark mode: toggled by adding `.dark` on <html>. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Nisaro brand palette (fixed across themes). */
+:root {
+  --brand-navy: #0e1c33;
+  --brand-blue: #1f6fe0;
+  --brand-gray: #94a3b8;
+}
+
 /* Design tokens — semantic colors resolved per theme via CSS variables. */
 :root {
-  --bg: #f4f5f7;
+  --bg: #f4f6fa;
   --surface: #ffffff;
-  --surface-2: #f9fafb;
-  --border: #e5e7eb;
-  --text: #0f172a;
-  --text-muted: #64748b;
-  --primary: #2563eb;
+  --surface-2: #eef2f8;
+  --border: #dbe3ee;
+  --text: #0e1c33; /* brand navy */
+  --text-muted: #5b6b82;
+  --primary: #1f6fe0; /* brand blue */
   --primary-fg: #ffffff;
-  --accent: #0ea5e9;
+  --accent: #1f6fe0;
   --positive: #16a34a;
   --negative: #dc2626;
   --warning: #d97706;
 }
 
 .dark {
-  --bg: #0b1120;
-  --surface: #111827;
-  --surface-2: #0f172a;
-  --border: #1e293b;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
-  --primary: #3b82f6;
+  --bg: #0a1526; /* deep navy */
+  --surface: #0f1f38;
+  --surface-2: #0c1a30;
+  --border: #1c3453;
+  --text: #e6edf5;
+  --text-muted: #94a3b8; /* brand gray */
+  --primary: #2f80ed; /* brand blue, brightened for dark bg */
   --primary-fg: #ffffff;
-  --accent: #38bdf8;
+  --accent: #4f93f5;
   --positive: #22c55e;
   --negative: #ef4444;
   --warning: #f59e0b;
@@ -48,6 +55,9 @@
   --color-positive: var(--positive);
   --color-negative: var(--negative);
   --color-warning: var(--warning);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-gray: var(--brand-gray);
 }
 
 html,
