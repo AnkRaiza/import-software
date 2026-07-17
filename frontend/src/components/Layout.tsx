@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Menu, Moon, Package, Sun, X } from 'lucide-react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import clsx from 'clsx'
 import { NAV_ITEMS } from './nav'
 import { useTheme } from '../lib/theme'
@@ -24,12 +24,12 @@ export default function Layout() {
           mobileOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        <div className="flex h-16 items-center gap-2 border-b border-border px-5">
-          <Package className="size-6 text-primary" />
-          <div className="leading-tight">
-            <div className="text-sm font-semibold">{t('app.name')}</div>
-            <div className="text-xs text-muted">{t('app.system')}</div>
-          </div>
+        <div className="flex h-16 items-center border-b border-border px-4">
+          <img
+            src="/nisaro-logo.png"
+            alt="Nisaro"
+            className="h-11 w-auto rounded-md bg-white p-1"
+          />
         </div>
 
         <nav className="flex-1 overflow-y-auto p-3">

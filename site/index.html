@@ -4,25 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nisaro</title>
-    <meta name="description" content="Nisaro — próximamente." />
+    <meta name="description" content="Nisaro — Import · Supply · Solutions. Próximamente." />
+    <link rel="icon" type="image/png" href="./nisaro-logo.png" />
     <style>
       :root {
-        --bg: #0b1120;
-        --surface: #111827;
-        --text: #e2e8f0;
-        --muted: #94a3b8;
-        --accent: #38bdf8;
-        --primary: #2563eb;
-        --border: #1e293b;
+        --navy: #0e1c33;
+        --blue: #1f6fe0;
+        --gray: #94a3b8;
+        --bg: #f4f6fa;
+        --muted: #5b6b82;
       }
       * { box-sizing: border-box; }
       html, body { height: 100%; margin: 0; }
       body {
         font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
         background:
-          radial-gradient(1200px 600px at 50% -10%, rgba(37, 99, 235, 0.25), transparent 60%),
+          radial-gradient(1000px 500px at 50% -5%, rgba(31, 111, 224, 0.10), transparent 60%),
           var(--bg);
-        color: var(--text);
+        color: var(--navy);
         display: grid;
         place-items: center;
         min-height: 100svh;
@@ -31,40 +30,35 @@
       main {
         text-align: center;
         padding: 2rem 1.5rem;
-        max-width: 640px;
+        max-width: 620px;
       }
-      .brand {
-        font-size: clamp(2.75rem, 9vw, 5rem);
-        font-weight: 700;
-        letter-spacing: -0.04em;
-        margin: 0;
-        background: linear-gradient(90deg, #fff, var(--accent));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+      .logo {
+        width: min(440px, 82vw);
+        height: auto;
+        display: block;
+        margin: 0 auto;
       }
       .badge {
         display: inline-block;
-        margin-top: 1rem;
-        font-size: 0.8rem;
-        letter-spacing: 0.18em;
+        margin-top: 1.5rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: var(--accent);
-        border: 1px solid var(--border);
+        font-weight: 600;
+        color: var(--blue);
+        border: 1px solid rgba(31, 111, 224, 0.3);
         border-radius: 999px;
-        padding: 0.4rem 0.9rem;
-        background: rgba(255, 255, 255, 0.02);
+        padding: 0.45rem 1rem;
+        background: rgba(31, 111, 224, 0.06);
       }
       p.tagline {
-        margin: 1.5rem auto 0;
+        margin: 1.4rem auto 0;
         color: var(--muted);
         font-size: 1.05rem;
         line-height: 1.6;
-        max-width: 42ch;
+        max-width: 40ch;
       }
-      .actions {
-        margin-top: 2.25rem;
-      }
+      .actions { margin-top: 2.25rem; }
       a.tool {
         display: inline-flex;
         align-items: center;
@@ -73,31 +67,35 @@
         font-weight: 600;
         font-size: 0.95rem;
         color: #fff;
-        background: var(--primary);
+        background: var(--blue);
         border-radius: 12px;
-        padding: 0.8rem 1.4rem;
-        transition: transform 0.15s ease, opacity 0.15s ease;
+        padding: 0.85rem 1.5rem;
+        box-shadow: 0 8px 20px rgba(31, 111, 224, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
       }
-      a.tool:hover { opacity: 0.92; transform: translateY(-1px); }
+      a.tool:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 26px rgba(31, 111, 224, 0.32);
+      }
       footer {
         position: fixed;
         bottom: 1.25rem;
         left: 0;
         right: 0;
         text-align: center;
-        color: var(--muted);
+        color: var(--gray);
         font-size: 0.8rem;
       }
     </style>
   </head>
   <body>
     <main>
-      <h1 class="brand">Nisaro</h1>
+      <img class="logo" src="./nisaro-logo.png" alt="Nisaro — Import · Supply · Solutions" />
       <div class="badge">Próximamente · Coming soon</div>
       <p class="tagline">
-        Estamos construyendo algo nuevo. Vuelve pronto.
+        Estamos construyendo algo nuevo.
         <br />
-        <span style="opacity: 0.7">We're building something new. Check back soon.</span>
+        <span style="opacity: 0.75">We're building something new.</span>
       </p>
       <div class="actions">
         <a class="tool" href="https://app.nisaro.tech">
