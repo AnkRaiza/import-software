@@ -7,8 +7,13 @@ import type { CompanyProfile } from './db/types'
 
 const COMPANY_ID = 'company'
 
+// Returns undefined while loading, null when no profile has been saved yet,
+// or the CompanyProfile. The null lets callers tell "empty" apart from "loading".
 export function useCompanyProfile() {
-  return useLiveQuery(() => db.settings.get(COMPANY_ID), [])
+  return useLiveQuery(
+    async () => (await db.settings.get(COMPANY_ID)) ?? null,
+    [],
+  )
 }
 
 export function getCompanyProfile(): Promise<CompanyProfile | undefined> {

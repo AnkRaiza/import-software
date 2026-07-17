@@ -24,12 +24,12 @@ export default function SettingsPage() {
   const { t } = useTranslation()
   const profile = useCompanyProfile()
 
-  if (profile === undefined) return null // loading
+  if (profile === undefined) return null // loading (null = no profile saved yet)
 
   return (
     <>
       <PageHeader title={t('settings.title')} subtitle={t('settings.subtitle')} />
-      <SettingsForm key={profile?.id ?? 'new'} initial={profile} />
+      <SettingsForm key={profile?.id ?? 'new'} initial={profile ?? undefined} />
     </>
   )
 }
