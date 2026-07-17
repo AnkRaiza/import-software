@@ -18,41 +18,64 @@ export function generateQuotationPdf({ quotation, company, t, money }: Quotation
   const doc = new jsPDF({ unit: 'mm', format: 'a4' })
   const pageWidth = doc.internal.pageSize.getWidth()
   const marginX = 14
-  let y = 18
+  const top = 16
+  let leftY = top
+  let rightY = top
 
-  // --- Header: company (left) + document title (right) ---
+  // --- Header: logo + company (left), document title (right) ---
+  if (company?.logo) {
+    try {
+      const props = doc.getImageProperties(company.logo)
+      const maxH = 18
+      const maxW = 55
+      let h = maxH
+      let w = (props.width / props.height) * h
+      if (w > maxW) {
+        w = maxW
+        h = (props.height / props.width) * w
+      }
+      doc.addImage(company.logo, props.fileType || 'PNG', marginX, leftY, w, h)
+      leftY += h + 5
+    } catch {
+      // Ignore an unreadable image and continue without the logo.
+    }
+  }
+
   if (company) {
     doc.setFont('helvetica', 'bold').setFontSize(14)
-    doc.text(company.name, marginX, y)
+    leftY += 2
+    doc.text(company.name, marginX, leftY)
     doc.setFont('helvetica', 'normal').setFontSize(9)
-    let cy = y + 6
     const line = (label: string, value?: string) => {
       if (!value) return
-      doc.text(`${label}: ${value}`, marginX, cy)
-      cy += 4.5
+      leftY += 4.5
+      doc.text(`${label}: ${value}`, marginX, leftY)
     }
     line(t('ruc'), company.ruc)
     if (company.address) {
-      doc.text(company.address, marginX, cy)
-      cy += 4.5
+      leftY += 4.5
+      doc.text(company.address, marginX, leftY)
     }
     line(t('phone'), company.phone)
     line(t('email'), company.email)
   }
 
   doc.setFont('helvetica', 'bold').setFontSize(18)
-  doc.text(t('title'), pageWidth - marginX, y, { align: 'right' })
+  doc.text(t('title'), pageWidth - marginX, rightY + 2, { align: 'right' })
   doc.setFont('helvetica', 'normal').setFontSize(10)
-  doc.text(`${t('number')}: ${quotation.number}`, pageWidth - marginX, y + 7, { align: 'right' })
-  doc.text(`${t('date')}: ${quotation.date}`, pageWidth - marginX, y + 12, { align: 'right' })
+  rightY += 9
+  doc.text(`${t('number')}: ${quotation.number}`, pageWidth - marginX, rightY, { align: 'right' })
+  rightY += 5
+  doc.text(`${t('date')}: ${quotation.date}`, pageWidth - marginX, rightY, { align: 'right' })
   if (quotation.validUntil) {
-    doc.text(`${t('validUntil')}: ${quotation.validUntil}`, pageWidth - marginX, y + 17, {
+    rightY += 5
+    doc.text(`${t('validUntil')}: ${quotation.validUntil}`, pageWidth - marginX, rightY, {
       align: 'right',
     })
   }
 
-  // --- Client block ---
-  y = 46
+  // --- Client block (below whichever header column is taller) ---
+  let y = Math.max(leftY, rightY) + 10
   doc.setFont('helvetica', 'bold').setFontSize(10)
   doc.text(t('billTo'), marginX, y)
   doc.setFont('helvetica', 'normal').setFontSize(10)

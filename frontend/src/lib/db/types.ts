@@ -148,6 +148,8 @@ export interface CompanyProfile {
   address?: string
   phone?: string
   email?: string
+  /** Logo as a base64 data URL (PNG/JPEG), shown on quotation PDFs. */
+  logo?: string
 }
 
 export const CURRENCIES: Currency[] = ['USD', 'CNY', 'PEN', 'EUR']

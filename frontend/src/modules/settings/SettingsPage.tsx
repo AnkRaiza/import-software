@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
-import { Save } from 'lucide-react'
+import { ImagePlus, Save } from 'lucide-react'
 import { saveCompanyProfile, useCompanyProfile } from '../../lib/settings'
 import { Button } from '../../components/Button'
 import { TextField } from '../../components/fields'
@@ -37,10 +37,19 @@ export default function SettingsPage() {
 function SettingsForm({
   initial,
 }: {
-  initial?: { name: string; ruc?: string; address?: string; phone?: string; email?: string }
+  initial?: {
+    name: string
+    ruc?: string
+    address?: string
+    phone?: string
+    email?: string
+    logo?: string
+  }
 }) {
   const { t } = useTranslation()
   const [saved, setSaved] = useState(false)
+  const [logo, setLogo] = useState<string | undefined>(initial?.logo)
+  const [logoError, setLogoError] = useState<string>()
   const {
     register,
     handleSubmit,
@@ -56,6 +65,32 @@ function SettingsForm({
     },
   })
 
+  const onLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    e.target.value = '' // allow re-selecting the same file later
+    if (!file) return
+    if (!/^image\/(png|jpe?g)$/.test(file.type)) {
+      setLogoError(t('settings.logoInvalid'))
+      return
+    }
+    if (file.size > 1_000_000) {
+      setLogoError(t('settings.logoTooLarge'))
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = () => {
+      setLogo(reader.result as string)
+      setLogoError(undefined)
+      setSaved(false)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const removeLogo = () => {
+    setLogo(undefined)
+    setSaved(false)
+  }
+
   const submit = handleSubmit(async (values) => {
     await saveCompanyProfile({
       name: values.name,
@@ -63,6 +98,7 @@ function SettingsForm({
       address: values.address || undefined,
       phone: values.phone || undefined,
       email: values.email || undefined,
+      logo,
     })
     setSaved(true)
   })
@@ -83,6 +119,40 @@ function SettingsForm({
         </div>
         <TextField label={t('settings.address')} {...register('address', { onChange: () => setSaved(false) })} />
         <TextField label={t('settings.email')} {...register('email', { onChange: () => setSaved(false) })} />
+
+        {/* Logo */}
+        <div>
+          <span className="mb-1 block text-sm font-medium">{t('settings.logo')}</span>
+          <div className="flex items-center gap-4">
+            {logo && (
+              <img
+                src={logo}
+                alt="logo"
+                className="h-16 w-auto max-w-40 rounded border border-border bg-white object-contain p-1"
+              />
+            )}
+            <div className="flex flex-col gap-2">
+              <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm hover:bg-surface-2">
+                <ImagePlus className="size-4" />
+                {t('settings.uploadLogo')}
+                <input
+                  type="file"
+                  accept="image/png,image/jpeg"
+                  onChange={onLogoChange}
+                  className="hidden"
+                />
+              </label>
+              {logo && (
+                <Button type="button" variant="ghost" size="sm" onClick={removeLogo}>
+                  {t('settings.removeLogo')}
+                </Button>
+              )}
+            </div>
+          </div>
+          <span className="mt-1 block text-xs text-muted">{t('settings.logoHint')}</span>
+          {logoError && <span className="mt-1 block text-xs text-negative">{logoError}</span>}
+        </div>
+
         <div className="flex items-center gap-3">
           <Button type="submit">
             <Save className="size-4" />
