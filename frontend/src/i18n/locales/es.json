@@ -320,6 +320,7 @@
     "igv": "IGV",
     "total": "Total",
     "notes": "Notas / Condiciones",
+    "preview": "Vista previa",
     "downloadPdf": "Descargar PDF",
     "setCompanyHint": "Configure el perfil de su empresa en Configuración para mostrarlo en el PDF.",
     "deleteTitle": "Eliminar cotización",

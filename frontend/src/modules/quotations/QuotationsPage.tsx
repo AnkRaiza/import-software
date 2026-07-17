@@ -5,7 +5,7 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useTranslation } from 'react-i18next'
-import { Copy, Download, FilePlus2, FileText, Pencil, Plus, Trash2 } from 'lucide-react'
+import { Copy, Download, Eye, FilePlus2, FileText, Pencil, Plus, Trash2 } from 'lucide-react'
 import { repo, type NewEntity } from '../../lib/repo'
 import { CURRENCIES, type Currency, type Quotation, type QuotationItem } from '../../lib/db/types'
 import { computeQuotationTotals, quotationLineTotal } from '../../lib/calc/quotation'
@@ -13,6 +13,7 @@ import { formatMoney } from '../../lib/calc/money'
 import { getCompanyProfile } from '../../lib/settings'
 import { Button } from '../../components/Button'
 import { ConfirmDialog } from '../../components/ConfirmDialog'
+import { Modal } from '../../components/Modal'
 import { Card, EmptyState, PageHeader } from '../../components/ui'
 
 function nextQuotationNumber(existing: Quotation[]): string {
@@ -178,6 +179,7 @@ function QuotationEditor({
   const [igvPct, setIgvPct] = useState(initial?.igvPct ?? 18)
   const [items, setItems] = useState<QuotationItem[]>(initial?.items ?? [])
   const [notes, setNotes] = useState(initial?.notes ?? '')
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 
   const totals = computeQuotationTotals(items, includeIgv, igvPct)
 
@@ -201,16 +203,39 @@ function QuotationEditor({
     onDone()
   }
 
-  const download = async () => {
-    const [{ generateQuotationPdf }, company] = await Promise.all([
+  const pdfDeps = async () => {
+    const [mod, company] = await Promise.all([
       import('../../lib/pdf/quotationPdf'),
       getCompanyProfile(),
     ])
-    generateQuotationPdf({
-      quotation: { ...build(), id: initial?.id ?? '', createdAt: '', updatedAt: '' },
-      company,
-      t: (k) => t(`quotations.pdf.${k}`),
-      money: (n) => money(n, currency),
+    return {
+      mod,
+      deps: {
+        quotation: { ...build(), id: initial?.id ?? '', createdAt: '', updatedAt: '' },
+        company,
+        t: (k: string) => t(`quotations.pdf.${k}`),
+        money: (n: number) => money(n, currency),
+      },
+    }
+  }
+
+  const download = async () => {
+    const { mod, deps } = await pdfDeps()
+    mod.generateQuotationPdf(deps)
+  }
+
+  const preview = async () => {
+    const { mod, deps } = await pdfDeps()
+    setPreviewUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev)
+      return mod.getQuotationPdfBlobUrl(deps)
+    })
+  }
+
+  const closePreview = () => {
+    setPreviewUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev)
+      return null
     })
   }
 
@@ -236,6 +261,10 @@ function QuotationEditor({
           <div className="flex gap-2">
             <Button variant="secondary" onClick={onDone}>
               {t('common.cancel')}
+            </Button>
+            <Button variant="secondary" onClick={preview}>
+              <Eye className="size-4" />
+              {t('quotations.preview')}
             </Button>
             <Button variant="secondary" onClick={download}>
               <Download className="size-4" />
@@ -388,6 +417,27 @@ function QuotationEditor({
           </Card>
         </div>
       </div>
+
+      <Modal
+        open={!!previewUrl}
+        onClose={closePreview}
+        title={t('quotations.preview')}
+        size="xl"
+        footer={
+          <Button onClick={download}>
+            <Download className="size-4" />
+            {t('quotations.downloadPdf')}
+          </Button>
+        }
+      >
+        {previewUrl && (
+          <iframe
+            src={previewUrl}
+            title={t('quotations.preview')}
+            className="h-[70vh] w-full rounded border border-border"
+          />
+        )}
+      </Modal>
     </>
   )
 }

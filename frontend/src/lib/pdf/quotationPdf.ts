@@ -14,7 +14,7 @@ export interface QuotationPdfDeps {
   money: (value: number) => string
 }
 
-export function generateQuotationPdf({ quotation, company, t, money }: QuotationPdfDeps) {
+function buildQuotationDoc({ quotation, company, t, money }: QuotationPdfDeps): jsPDF {
   const doc = new jsPDF({ unit: 'mm', format: 'a4' })
   const pageWidth = doc.internal.pageSize.getWidth()
   const marginX = 14
@@ -139,5 +139,15 @@ export function generateQuotationPdf({ quotation, company, t, money }: Quotation
     doc.text(wrapped, marginX, ty)
   }
 
-  doc.save(`${quotation.number}.pdf`)
+  return doc
+}
+
+/** Build and download the quotation PDF. */
+export function generateQuotationPdf(deps: QuotationPdfDeps) {
+  buildQuotationDoc(deps).save(`${deps.quotation.number}.pdf`)
+}
+
+/** Build the quotation PDF and return a blob URL for previewing in an iframe. */
+export function getQuotationPdfBlobUrl(deps: QuotationPdfDeps): string {
+  return buildQuotationDoc(deps).output('bloburl') as unknown as string
 }

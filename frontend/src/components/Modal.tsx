@@ -19,7 +19,7 @@ export function Modal({
   title: string
   children: ReactNode
   footer?: ReactNode
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 }) {
   const { t } = useTranslation()
   useEffect(() => {
@@ -34,7 +34,13 @@ export function Modal({
   if (!open) return null
 
   const width =
-    size === 'sm' ? 'max-w-sm' : size === 'lg' ? 'max-w-3xl' : 'max-w-lg'
+    size === 'sm'
+      ? 'max-w-sm'
+      : size === 'lg'
+        ? 'max-w-3xl'
+        : size === 'xl'
+          ? 'max-w-5xl'
+          : 'max-w-lg'
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 sm:p-8">

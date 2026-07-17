@@ -320,6 +320,7 @@
     "igv": "IGV",
     "total": "Total",
     "notes": "Notes / Terms",
+    "preview": "Preview",
     "downloadPdf": "Download PDF",
     "setCompanyHint": "Set your company profile in Settings to show it on the PDF.",
     "deleteTitle": "Delete quotation",
