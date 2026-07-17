@@ -10,7 +10,7 @@ import { repo, type NewEntity } from '../../lib/repo'
 import { CURRENCIES, type Currency, type Quotation, type QuotationItem } from '../../lib/db/types'
 import { computeQuotationTotals, quotationLineTotal } from '../../lib/calc/quotation'
 import { formatMoney } from '../../lib/calc/money'
-import { getCompanyProfile } from '../../lib/settings'
+import { resolveCompanyForPdf } from '../../lib/pdf/defaultLogo'
 import { Button } from '../../components/Button'
 import { ConfirmDialog } from '../../components/ConfirmDialog'
 import { Modal } from '../../components/Modal'
@@ -62,7 +62,7 @@ export default function QuotationsPage() {
   const download = async (q: Quotation) => {
     const [{ generateQuotationPdf }, company] = await Promise.all([
       import('../../lib/pdf/quotationPdf'),
-      getCompanyProfile(),
+      resolveCompanyForPdf(),
     ])
     generateQuotationPdf({
       quotation: q,
@@ -75,7 +75,7 @@ export default function QuotationsPage() {
   const openPreview = async (q: Quotation) => {
     const [{ getQuotationPdfBlobUrl }, company] = await Promise.all([
       import('../../lib/pdf/quotationPdf'),
-      getCompanyProfile(),
+      resolveCompanyForPdf(),
     ])
     const url = getQuotationPdfBlobUrl({
       quotation: q,
@@ -256,7 +256,7 @@ function QuotationEditor({
   const pdfDeps = async () => {
     const [mod, company] = await Promise.all([
       import('../../lib/pdf/quotationPdf'),
-      getCompanyProfile(),
+      resolveCompanyForPdf(),
     ])
     return {
       mod,
