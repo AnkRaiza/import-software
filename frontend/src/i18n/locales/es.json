@@ -280,8 +280,8 @@
     "logo": "Logo",
     "uploadLogo": "Subir logo",
     "removeLogo": "Quitar logo",
-    "logoHint": "PNG o JPEG, hasta 1 MB",
-    "logoTooLarge": "La imagen es muy grande (máx. 1 MB)",
+    "logoHint": "PNG o JPEG, hasta 3 MB",
+    "logoTooLarge": "La imagen es muy grande (máx. 3 MB)",
     "logoInvalid": "Elija una imagen PNG o JPEG",
     "nameRequired": "El nombre de la empresa es obligatorio"
   },

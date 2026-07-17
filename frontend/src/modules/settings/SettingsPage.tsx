@@ -73,7 +73,7 @@ function SettingsForm({
       setLogoError(t('settings.logoInvalid'))
       return
     }
-    if (file.size > 1_000_000) {
+    if (file.size > 3_000_000) {
       setLogoError(t('settings.logoTooLarge'))
       return
     }
