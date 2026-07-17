@@ -1,0 +1,8 @@
+# nisaro.tech root — presentational (coming soon). Single static page; no SPA
+# catch-all here (that lives on the app subdomain only).
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>

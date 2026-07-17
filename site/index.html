@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nisaro</title>
+    <meta name="description" content="Nisaro — próximamente." />
+    <style>
+      :root {
+        --bg: #0b1120;
+        --surface: #111827;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --primary: #2563eb;
+        --border: #1e293b;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+      body {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        background:
+          radial-gradient(1200px 600px at 50% -10%, rgba(37, 99, 235, 0.25), transparent 60%),
+          var(--bg);
+        color: var(--text);
+        display: grid;
+        place-items: center;
+        min-height: 100svh;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        text-align: center;
+        padding: 2rem 1.5rem;
+        max-width: 640px;
+      }
+      .brand {
+        font-size: clamp(2.75rem, 9vw, 5rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        margin: 0;
+        background: linear-gradient(90deg, #fff, var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .badge {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.4rem 0.9rem;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      p.tagline {
+        margin: 1.5rem auto 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        max-width: 42ch;
+      }
+      .actions {
+        margin-top: 2.25rem;
+      }
+      a.tool {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #fff;
+        background: var(--primary);
+        border-radius: 12px;
+        padding: 0.8rem 1.4rem;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+      a.tool:hover { opacity: 0.92; transform: translateY(-1px); }
+      footer {
+        position: fixed;
+        bottom: 1.25rem;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="brand">Nisaro</h1>
+      <div class="badge">Próximamente · Coming soon</div>
+      <p class="tagline">
+        Estamos construyendo algo nuevo. Vuelve pronto.
+        <br />
+        <span style="opacity: 0.7">We're building something new. Check back soon.</span>
+      </p>
+      <div class="actions">
+        <a class="tool" href="https://app.nisaro.tech">
+          Acceder a la herramienta
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </main>
+    <footer>© <span id="y"></span> Nisaro</footer>
+    <script>
+      document.getElementById('y').textContent = new Date().getFullYear()
+    </script>
+  </body>
+</html>

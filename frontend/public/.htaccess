@@ -1,21 +1,30 @@
-# SPA routing for the Import Cost Management app on HostGator (Apache).
-# Sends any request that is not a real file/directory to index.html so
-# React Router can handle client-side routes on refresh / deep links.
+# app.nisaro.tech — Import Cost Management tool (Apache / HostGator).
 
+# --- Access control (HTTP Basic Auth) ---------------------------------------
+# The password file lives OUTSIDE this deployed folder so FTP deploys never
+# overwrite or delete it. Create it once (see repo README / setup notes):
+#   ssh: htpasswd -c ~/.htpasswd <username>
+# Adjust the path below if your account home differs from /home3/clownart.
+AuthType Basic
+AuthName "Nisaro Tools"
+AuthUserFile /home3/clownart/.htpasswd
+Require valid-user
+
+# --- SPA routing ------------------------------------------------------------
+# Any request that is not a real file/directory -> index.html so React Router
+# can handle client-side routes on refresh / deep links.
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Serve existing files/directories as-is.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Everything else -> index.html
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Basic caching for hashed static assets.
+# --- Caching for hashed static assets ---------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/css "access plus 1 year"

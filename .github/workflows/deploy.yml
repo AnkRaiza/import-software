@@ -3,15 +3,16 @@ name: Deploy to HostGator
 on:
   push:
     branches: [main]
-  workflow_dispatch:        # allow manual runs from the Actions tab
+  workflow_dispatch:
 
 concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    name: Build & FTP Deploy
+  # --- The tool → app.nisaro.tech ------------------------------------------
+  tool:
+    name: Build & Deploy Tool (app.nisaro.tech)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,7 +37,7 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-      - name: Deploy build to HostGator via FTP
+      - name: Deploy tool via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -44,7 +45,26 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           local-dir: ./frontend/dist/
-          # .htaccess (SPA routing) ships from frontend/public and is included.
+          exclude: |
+            **/.git*
+            **/.git*/**
+
+  # --- Presentational site → nisaro.tech (root) ----------------------------
+  site:
+    name: Deploy Coming Soon (nisaro.tech)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy site via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SITE_DIR }}
+          local-dir: ./site/
           exclude: |
             **/.git*
             **/.git*/**
