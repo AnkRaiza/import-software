@@ -1,7 +1,14 @@
 // IndexedDB implementation of the repository interface, backed by Dexie.
 
 import type { Table } from 'dexie'
-import type { ID, ImportRecord, Product, Supplier, Timestamped } from '../db/types'
+import type {
+  ID,
+  ImportRecord,
+  Product,
+  Quotation,
+  Supplier,
+  Timestamped,
+} from '../db/types'
 import { db } from '../db/schema'
 import type {
   CrudRepository,
@@ -57,4 +64,5 @@ export const dexieRepository: Repository = {
   suppliers: new DexieCrud<Supplier>(db.suppliers),
   products: new DexieCrud<Product>(db.products),
   imports: new DexieCrud<ImportRecord>(db.imports),
+  quotations: new DexieCrud<Quotation>(db.quotations),
 }

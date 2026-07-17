@@ -10,6 +10,8 @@ import CostAllocationPage from './modules/allocation/CostAllocationPage'
 import PricingPage from './modules/pricing/PricingPage'
 import ImportHistoryPage from './modules/history/ImportHistoryPage'
 import SimulatorPage from './modules/simulator/SimulatorPage'
+import QuotationsPage from './modules/quotations/QuotationsPage'
+import SettingsPage from './modules/settings/SettingsPage'
 
 export default function App() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
         <Route path="pricing" element={<PricingPage />} />
         <Route path="history" element={<ImportHistoryPage />} />
         <Route path="simulator" element={<SimulatorPage />} />
+        <Route path="quotations" element={<QuotationsPage />} />
+        <Route path="settings" element={<SettingsPage />} />
         <Route path="*" element={<DashboardPage />} />
       </Route>
     </Routes>

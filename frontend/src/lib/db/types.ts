@@ -114,6 +114,42 @@ export interface ImportRecord extends Timestamped {
   targetMargin?: number
 }
 
+/** A client quotation line — may reference a catalog product, price is custom. */
+export interface QuotationItem {
+  productId?: ID
+  sku?: string
+  name: string
+  quantity: number
+  /** Selling price to the client (custom, independent of import cost). */
+  unitPrice: number
+}
+
+/** A client-facing quotation (cotización). Separate from imports. */
+export interface Quotation extends Timestamped {
+  id: ID
+  number: string
+  date: string
+  validUntil?: string
+  clientName: string
+  clientCompany?: string
+  clientContact?: string
+  currency: Currency
+  items: QuotationItem[]
+  includeIgv: boolean
+  igvPct: number
+  notes?: string
+}
+
+/** Company/issuer profile shown on quotation PDFs (app settings singleton). */
+export interface CompanyProfile {
+  id: ID
+  name: string
+  ruc?: string
+  address?: string
+  phone?: string
+  email?: string
+}
+
 export const CURRENCIES: Currency[] = ['USD', 'CNY', 'PEN', 'EUR']
 export const INCOTERMS: Incoterm[] = ['FOB', 'CIF', 'EXW', 'FCA', 'CFR', 'DDP']
 export const FINISHES: Finish[] = ['1-side-uv', '2-side-uv']

@@ -3,12 +3,20 @@
 // without touching UI or calc code.
 
 import Dexie, { type Table } from 'dexie'
-import type { ImportRecord, Product, Supplier } from './types'
+import type {
+  CompanyProfile,
+  ImportRecord,
+  Product,
+  Quotation,
+  Supplier,
+} from './types'
 
 export class AppDB extends Dexie {
   suppliers!: Table<Supplier, string>
   products!: Table<Product, string>
   imports!: Table<ImportRecord, string>
+  quotations!: Table<Quotation, string>
+  settings!: Table<CompanyProfile, string>
 
   constructor() {
     super('import-cost-management')
@@ -17,6 +25,14 @@ export class AppDB extends Dexie {
       suppliers: 'id, company, country',
       products: 'id, sku, name, supplierId',
       imports: 'id, date, name, supplierId',
+    })
+    // v2: client quotations + company settings.
+    this.version(2).stores({
+      suppliers: 'id, company, country',
+      products: 'id, sku, name, supplierId',
+      imports: 'id, date, name, supplierId',
+      quotations: 'id, number, date, clientName',
+      settings: 'id',
     })
   }
 }

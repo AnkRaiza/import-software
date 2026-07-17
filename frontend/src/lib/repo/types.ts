@@ -2,7 +2,14 @@
 // MVP: IndexedDB (Dexie). Phase 2: an HTTP client hitting the PHP/MySQL API.
 // UI and calc code depend only on these interfaces, never on Dexie directly.
 
-import type { ID, ImportRecord, Product, Supplier, Timestamped } from '../db/types'
+import type {
+  ID,
+  ImportRecord,
+  Product,
+  Quotation,
+  Supplier,
+  Timestamped,
+} from '../db/types'
 
 /** Fields the caller provides; id + timestamps are assigned by the repository. */
 export type NewEntity<T extends Timestamped & { id: ID }> = Omit<
@@ -26,4 +33,5 @@ export interface Repository {
   suppliers: CrudRepository<Supplier>
   products: CrudRepository<Product>
   imports: CrudRepository<ImportRecord>
+  quotations: CrudRepository<Quotation>
 }
